@@ -1,0 +1,69 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Root",
+  "type": "object",
+  "required": [
+    "rate",
+    "rel_rub",
+    "full_rate",
+    "amount"
+  ],
+  "properties": {
+    "rate": {
+      "title": "Rate",
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+$"
+    },
+    "rel_rub": {
+      "title": "Rel_rub",
+      "type": "object",
+      "maxProperties": 2,
+      "oneOf": [
+        {
+          "required": [
+            "USD",
+            "RUR"
+          ]
+        },
+        {
+          "required": [
+            "USD",
+            "EUR"
+          ]
+        },
+        {
+          "required": [
+            "EUR",
+            "RUR"
+          ]
+        }
+      ],
+      "properties": {
+        "EUR": {
+          "title": "Eur",
+          "type": "string",
+          "pattern": "\\d+\\.\\d+$"
+        },
+        "USD": {
+          "title": "Usd",
+          "type": "string",
+          "pattern": "\\d+\\.\\d+$"
+        },
+        "RUR": {
+          "title": "Rur",
+          "type": "integer"
+        }
+      }
+    },
+    "full_rate": {
+      "title": "Full_rate",
+      "type": "string",
+      "pattern": "^\\d (EUR|RUR|USD) = \\d+\\.\\d+ (EUR|RUR|USD)$"
+    },
+    "amount": {
+      "title": "Amount",
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+$"
+    }
+  }
+}

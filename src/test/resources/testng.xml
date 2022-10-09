@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Api tests">
+    <test name="Калькулятор ипотеки" enabled="true">
+        <classes>
+            <class name="com.karine.tests.CalculatorTest"/>
+        </classes>
+    </test>
+    <test name="Обмен валют" enabled="true">
+        <classes>
+            <class name="com.karine.tests.CurrencyExchangeTest"/>
+        </classes>
+    </test>
+</suite>

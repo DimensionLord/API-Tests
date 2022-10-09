@@ -1,0 +1,446 @@
+{
+  "$schema": "http://json-schema.org/draft-06/schema#",
+  "$ref": "#/definitions/Products",
+  "definitions": {
+    "Products": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "meta": {
+          "$ref": "#/definitions/Meta"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Datum"
+          }
+        }
+      },
+      "required": [
+        "data",
+        "meta"
+      ],
+      "title": "Products"
+    },
+    "Datum": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "attributes": {
+          "$ref": "#/definitions/Attributes"
+        }
+      },
+      "required": [
+        "attributes",
+        "id",
+        "type"
+      ],
+      "title": "Datum"
+    },
+    "Attributes": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "code": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "product": {
+          "$ref": "#/definitions/Product"
+        },
+        "options": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Option"
+          }
+        },
+        "promotions": {
+          "type": "array",
+          "items": {}
+        }
+      },
+      "required": [
+        "code",
+        "name",
+        "options",
+        "product",
+        "promotions"
+      ],
+      "title": "Attributes"
+    },
+    "Option": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "code": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "comment": {
+          "type": "string"
+        },
+        "saleStart": {
+          "type": "string",
+          "format": "date"
+        },
+        "reviewStart": {
+          "type": "string",
+          "format": "date"
+        },
+        "interestCorrection": {
+          "$ref": "#/definitions/InterestCorrectionUnion"
+        },
+        "options": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/CreditPurpose"
+          }
+        },
+        "promotions": {
+          "type": "array",
+          "items": {}
+        },
+        "reviewFinish": {
+          "type": "string",
+          "format": "date"
+        }
+      },
+      "required": [
+        "code",
+        "comment",
+        "interestCorrection",
+        "name",
+        "options",
+        "promotions",
+        "reviewStart",
+        "saleStart"
+      ],
+      "title": "Option"
+    },
+    "InterestCorrectionClass": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "method": {
+          "$ref": "#/definitions/CreditPurpose"
+        },
+        "value": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "method",
+        "value"
+      ],
+      "title": "InterestCorrectionClass"
+    },
+    "CreditPurpose": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "code": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "code",
+        "name"
+      ],
+      "title": "CreditPurpose"
+    },
+    "Product": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "code": {
+          "type": "string"
+        },
+        "comment": {
+          "type": "string"
+        },
+        "saleStart": {
+          "type": "string",
+          "format": "date"
+        },
+        "refinanceStart": {
+          "type": "string",
+          "format": "date"
+        },
+        "reviewStart": {
+          "type": "string",
+          "format": "date"
+        },
+        "borrowerReqs": {
+          "$ref": "#/definitions/BorrowerReqs"
+        },
+        "parameters": {
+          "$ref": "#/definitions/Parameters"
+        },
+        "interestAmount": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/InterestAmount"
+          }
+        },
+        "rateRebate": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/RateRebate"
+          }
+        },
+        "maxCreditAmount": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/MaxCreditAmount"
+          }
+        },
+        "creditPurposes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/CreditPurpose"
+          }
+        },
+        "employmentTypes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/CreditPurpose"
+          }
+        }
+      },
+      "required": [
+        "borrowerReqs",
+        "code",
+        "comment",
+        "creditPurposes",
+        "employmentTypes",
+        "interestAmount",
+        "maxCreditAmount",
+        "parameters",
+        "rateRebate",
+        "refinanceStart",
+        "reviewStart",
+        "saleStart"
+      ],
+      "title": "Product"
+    },
+    "BorrowerReqs": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "commonWorkExp": {
+          "type": "integer"
+        },
+        "lastWorkExp": {
+          "type": "integer"
+        },
+        "maxNumber": {
+          "type": "integer"
+        },
+        "maxAge": {
+          "type": "integer"
+        },
+        "minAge": {
+          "type": "integer"
+        },
+        "coborrowerMinAge": {
+          "type": "integer"
+        },
+        "coborrowerMaxAge": {
+          "type": "integer"
+        },
+        "maxAgeInclusive": {
+          "type": "boolean"
+        },
+        "coborrowerMaxAgeInclusive": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "coborrowerMaxAge",
+        "coborrowerMaxAgeInclusive",
+        "coborrowerMinAge",
+        "commonWorkExp",
+        "lastWorkExp",
+        "maxAge",
+        "maxAgeInclusive",
+        "maxNumber",
+        "minAge"
+      ],
+      "title": "BorrowerReqs"
+    },
+    "InterestAmount": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "creditorTypeCode": {
+          "type": "string"
+        },
+        "minCreditToPledge": {
+          "type": "integer"
+        },
+        "maxCreditToPledge": {
+          "type": "integer"
+        },
+        "interestPercent": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "creditorTypeCode",
+        "interestPercent",
+        "maxCreditToPledge",
+        "minCreditToPledge"
+      ],
+      "title": "InterestAmount"
+    },
+    "MaxCreditAmount": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "region": {
+          "$ref": "#/definitions/CreditPurpose"
+        },
+        "maxCreditAmount": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "maxCreditAmount"
+      ],
+      "title": "MaxCreditAmount"
+    },
+    "Parameters": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "minDebtToPledge": {
+          "type": "integer"
+        },
+        "maxDebtToPledge": {
+          "type": "integer"
+        },
+        "minCreditCalcPeriod": {
+          "type": "integer"
+        },
+        "maxCreditCalcPeriod": {
+          "type": "integer"
+        },
+        "minCreditAmount": {
+          "type": "integer"
+        },
+        "maxCreditAmount": {
+          "type": "integer"
+        },
+        "mcpAmount": {
+          "type": "integer"
+        },
+        "gracePeriod": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "maxCreditAmount",
+        "maxCreditCalcPeriod",
+        "maxDebtToPledge",
+        "minCreditAmount",
+        "minCreditCalcPeriod",
+        "minDebtToPledge"
+      ],
+      "title": "Parameters"
+    },
+    "RateRebate": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "rateRebateType": {
+          "$ref": "#/definitions/CreditPurpose"
+        },
+        "sumWithOthers": {
+          "type": "boolean"
+        },
+        "delayingRule": {
+          "type": "boolean"
+        },
+        "notForRefinancing": {
+          "type": "boolean"
+        },
+        "rebateValue": {
+          "type": "number"
+        },
+        "rateRebateCategory": {
+          "$ref": "#/definitions/CreditPurpose"
+        },
+        "regions": {
+          "type": "array",
+          "items": {}
+        },
+        "minCreditToPledge": {
+          "type": "integer"
+        },
+        "maxCreditToPledge": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "delayingRule",
+        "notForRefinancing",
+        "rateRebateCategory",
+        "rateRebateType",
+        "rebateValue",
+        "regions",
+        "sumWithOthers"
+      ],
+      "title": "RateRebate"
+    },
+    "Meta": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "currentPage": {
+          "type": "integer"
+        },
+        "pageSize": {
+          "type": "integer"
+        },
+        "totalPages": {
+          "type": "integer"
+        },
+        "totalSize": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "currentPage",
+        "pageSize",
+        "totalPages",
+        "totalSize"
+      ],
+      "title": "Meta"
+    },
+    "InterestCorrectionUnion": {
+      "anyOf": [
+        {
+          "type": "array",
+          "items": {}
+        },
+        {
+          "$ref": "#/definitions/InterestCorrectionClass"
+        }
+      ],
+      "title": "InterestCorrectionUnion"
+    }
+  }
+}
